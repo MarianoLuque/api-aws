@@ -1,0 +1,28 @@
+{
+  "name": "api-aws",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarianoLuque/api-aws.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarianoLuque/api-aws/issues"
+  },
+  "homepage": "https://github.com/MarianoLuque/api-aws#readme",
+  "devDependencies": {
+    "serverless-offline": "^11.0.3"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1230.0",
+    "querystring": "^0.2.1",
+    "uuid": "^9.0.0"
+  }
+}

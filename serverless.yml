@@ -1,0 +1,170 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: api
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: sa-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:sa-east-1:492921538758:table/CategoriasTable
+
+plugins:
+  - serverless-offline
+
+
+functions:
+  getCategorias: 
+    handler: src/categorias.getCategorias
+    events: 
+      - http:
+          method: GET
+          path: /categorias
+  getCategoria: 
+    handler: src/categorias.getCategoria
+    events: 
+      - http:
+          method: GET
+          path: /categorias/{id}
+  createCategoria: 
+    handler: src/categorias.createCategoria
+    events: 
+      - http:
+          method: POST
+          path: /categorias
+  updateCategoria: 
+    handler: src/categorias.updateCategoria
+    events: 
+      - http:
+          method: PUT
+          path: /categorias/{id}
+  deleteCategoria: 
+    handler: src/categorias.deleteCategoria
+    events: 
+      - http:
+          method: DELETE
+          path: /categorias/{id}
+
+resources:
+  Resources:
+    CategoriasTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: CategoriasTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    SubcategoriasTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: SubcategoriasTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    ArticulosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ArticulosTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    ColoresTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ColoresTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    PedidosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: PedidosTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    DetallesPedidosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DetallesPedidosTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    VentasTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: VentasTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    DetallesVentasTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DetallesVentasTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    ProveedoresTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ProveedoresTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
