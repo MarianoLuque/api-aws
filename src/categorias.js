@@ -29,9 +29,9 @@ module.exports.getCategorias = async (event) => {
 
     return {
       status: 200,
-      body: {
+      body: JSON.stringify({
         categorias,
-      },
+      }),
     };
   } catch (error) {
     console.log(error)
@@ -59,7 +59,7 @@ module.exports.getCategoria = async (event) => {
 
     return {
       status: 200,
-      body: categoria,
+      body: JSON.stringify(categoria),
     };
   } catch (error) {
     console.log(error)
@@ -74,7 +74,7 @@ module.exports.createCategoria = async (event) => {
   try {
     const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-    const { nombre } = event.body;
+    const { nombre } = JSON.parse(event.body);
     const id = v4();
   
     console.log("created id: ", id);
@@ -154,9 +154,9 @@ module.exports.deleteCategoria = async (event) => {
   
     return {
       status: 200,
-      body: {
+      body: JSON.stringify({
         message: 'Deleted category'
-      }
+      }),
     };
   } catch (error) {
     console.log(error)
